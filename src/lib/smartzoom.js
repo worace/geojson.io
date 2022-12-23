@@ -2,7 +2,7 @@ const bbox = require('@turf/bbox').default;
 
 module.exports = function (map, feature) {
   if (feature.geometry.type === 'Point') {
-    map.flyTo({
+    map.jumpTo({
       center: feature.geometry.coordinates
     });
   } else {
