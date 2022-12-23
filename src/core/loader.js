@@ -72,7 +72,14 @@ module.exports = function (context) {
     }
   }
 
+  // NOTE this is tweaked from original geojson source
+  // to allow injecting data embedded within the HTML document as a
+  // static script tag
   return function (query) {
+    const mapDataTag = document.getElementById('map-data');
+    if (mapDataTag !== null) {
+      return inlineJSON(mapDataTag.innerHTML);
+    }
     if (!query.id && !query.data) return;
 
     const oldRoute = d3.event
